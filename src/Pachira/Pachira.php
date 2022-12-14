@@ -9,6 +9,7 @@ require_once __DIR__ . "/View.php";
 
 class Pachira {
   private static $plugins = [];
+  public static $store = [];
 
   public static function run($options=[]){
     foreach(self::$plugins as $name => $initializer){
