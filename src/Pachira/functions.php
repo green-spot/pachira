@@ -26,25 +26,8 @@ function pass(){
   throw new Pachira\NextRoute();
 }
 
-function not_found($view="404"){
+function not_found(){
   header("Status: 404 Not Found");
-  if(!view($view)) echo "404 not found.";
-  exit;
-}
-
-
-/* View Functions */
-
-function view($name, $vars=[]){
-  Pachira\View::view($name, $vars);
-}
-
-function capture_view($name, $vars=[]){
-  return capture(function()use($name, $vars){view($name, $vars);});
-}
-
-function view_var($var, $val){
-  Pachira\View::set_view_var($var, $val);
 }
 
 

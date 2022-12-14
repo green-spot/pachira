@@ -8,9 +8,35 @@ require_once __DIR__ . "/NextRoute.php";
 require_once __DIR__ . "/View.php";
 
 class Pachira {
+  private static $plugins = [];
+
   public static function run($options=[]){
+    foreach(self::$plugins as $name => $initializer){
+      $option = el($options, $name);
+      if($option) $initializer($option);
+    }
+
     $path = el($options, "path", el($_SERVER, "PATH_INFO", "/"));
-    Pachira\View::view_dir(el($options, "view_dir", null));
     Pachira\Router::getInstance()->route($path);
   }
+
+  public static function addPlugin($name, $initializer){
+    self::$plugins[$name] = $initializer;
+  }
 }
+
+Pachira::addPlugin("view", function($options){
+  Pachira\View::view_dir(el($options, "directory"));
+
+  function view($name, $vars=[]){
+    Pachira\View::view($name, $vars);
+  }
+
+  function capture_view($name, $vars=[]){
+    return capture(function()use($name, $vars){view($name, $vars);});
+  }
+
+  function view_var($var, $val){
+    Pachira\View::set_view_var($var, $val);
+  }
+});
