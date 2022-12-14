@@ -12,8 +12,6 @@
     }
   ],
   "autoload": {
-    "psr-4": {
-      "Pachira\\": "src/Pachira/"
-    }
+    "files": ["src/Pachira/Pachira.php"]
   }
 }
