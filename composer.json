@@ -1,0 +1,19 @@
+{
+  "name": "green-spot/pachira",
+  "description": "PHP Web Framework inspired by Sinatra",
+  "keywords": [],
+  "type": "library",
+  "license": "MIT",
+  "homepage": "https://github.com/green-spot/pachira",
+  "authors": [
+    {
+      "name": "green spot",
+      "email": "in.green.spot@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Pachira\\": "src/Pachira/"
+    }
+  }
+}
