@@ -14,15 +14,15 @@ class RoutingGroup {
   }
 
   public function get($re, $fn){
-    $this->router->get("{$this->prefix}{$re}", $fn)->use($this->middlewares);
+    return $this->router->get("{$this->prefix}{$re}", $fn)->use($this->middlewares);
   }
 
   public function post($re, $fn){
-    $this->router->post("{$this->prefix}{$re}", $fn)->use($this->middlewares);
+    return $this->router->post("{$this->prefix}{$re}", $fn)->use($this->middlewares);
   }
 
   public function request($re, $fn){
-    $this->router->request("{$this->prefix}{$re}", $fn)->use($this->middlewares);
+    return $this->router->request("{$this->prefix}{$re}", $fn)->use($this->middlewares);
   }
 
   public function redirect($path, $code=302){
