@@ -1,3 +1,2 @@
-PHP Web Framework inspired by Sinatra.
-
-[Document](/green-spot/pachira/wiki/)
+PHP Web Framework inspired by Sinatra.<br>
+[Document](https://github.com/green-spot/pachira/wiki/)
