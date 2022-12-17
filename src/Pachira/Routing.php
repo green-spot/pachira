@@ -4,8 +4,27 @@ namespace Pachira;
 
 class Routing {
   public function __construct($re, $fn, $method, $router){
+    list($re, $query) = explode("@", $re);
     $this->re = $re;
-    $this->fn = $fn;
+
+    if($query){
+      parse_str($query, $query);
+      $this->query = $query;
+
+      $this->fn = function(...$args)use($fn, $method, $query){
+        $request = $method === "post" ? $_POST : $_GET;
+
+        foreach($query as $k => $v){
+          if(el($request, $k) !== $v) pass();
+        }
+
+        call_user_func_array($fn, $args);
+      };
+
+    }else{
+      $this->fn = $fn;
+    }
+
     $this->method = $method;
     $this->router = $router;
     $this->middleware_names = [];
