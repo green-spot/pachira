@@ -24,4 +24,8 @@ class RoutingGroup {
   public function request($re, $fn){
     $this->router->request("{$this->prefix}{$re}", $fn)->use($this->middlewares);
   }
+
+  public function redirect($path, $code=302){
+    redirect($this->prefix . $path, $code);
+  }
 }
