@@ -4,11 +4,14 @@ namespace Pachira;
 
 class Routing {
   public function __construct($re, $fn, $method, $router){
-    list($re, $query) = explode("@", $re);
-    $this->re = $re;
+    if(strpos($re, "@") === false){
+      $this->re = $re;
+      $this->fn = $fn;
 
-    if($query){
+    }else{
+      list($re, $query) = explode("@", $re);
       parse_str($query, $query);
+      $this->re = $re;
       $this->query = $query;
 
       $this->fn = function(...$args)use($fn, $method, $query){
@@ -20,9 +23,6 @@ class Routing {
 
         call_user_func_array($fn, $args);
       };
-
-    }else{
-      $this->fn = $fn;
     }
 
     $this->method = $method;
