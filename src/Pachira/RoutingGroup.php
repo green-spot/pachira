@@ -3,6 +3,8 @@
 namespace Pachira;
 
 class RoutingGroup {
+  public $router, $prefix, $middlewares;
+
   public function __construct($router, $prefix, $middlewares=[]){
     $this->router = $router;
     $this->prefix = $prefix;

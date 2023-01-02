@@ -3,6 +3,8 @@
 namespace Pachira;
 
 class Routing {
+  public $re, $fn, $query, $method, $router, $middleware_names;
+
   public function __construct($re, $fn, $method, $router){
     if(strpos($re, "@") === false){
       $this->re = $re;

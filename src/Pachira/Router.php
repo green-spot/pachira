@@ -3,7 +3,7 @@
 namespace Pachira;
 
 class Router {
-  private static $singleton;
+  private static $singleton, $map_get, $map_post, $map_request, $middlewares;
 
   public static function getInstance(){
     if(!isset(self::$singleton)) self::$singleton = new self();
