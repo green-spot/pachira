@@ -7,4 +7,7 @@ Pachira::run([
   "view" => [
     "directory" => __DIR__ . "/views/"
   ],
+  "autoload" => [
+    "App\Model" => __DIR__ . "/models/"
+  ]
 ]);

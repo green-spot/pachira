@@ -41,3 +41,23 @@ Pachira::addPlugin("view", function($options){
     Pachira\View::set_view_var($var, $val);
   }
 });
+
+Pachira::addPlugin("autoload", function ($options) {
+  spl_autoload_register(function($className)use($options){
+    $className = ltrim($className, '\\');
+
+    foreach($options as $namespace => $dir){
+      if(strpos($className, $namespace) !== FALSE){
+        $rpath = ltrim(str_replace($namespace, "", $className), "\\");
+        $path = rtrim($dir, "/") . "/" . str_replace("\\", "/", $rpath) . ".php";
+
+        if(is_file($path)){
+          require_once $path;
+          return true;
+        }
+      }
+    }
+
+    return false;
+  });
+});
