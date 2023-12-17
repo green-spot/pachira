@@ -11,8 +11,9 @@ class Routing {
       $this->fn = $fn;
 
     }else{
-      list($re, $query) = explode("@", $re);
-      parse_str($query, $query);
+      list($re, $_query) = explode("@", $re);
+      $query = [];
+      parse_str($_query, $query);
       $this->re = $re;
       $this->query = $query;
 
