@@ -22,12 +22,12 @@ class Pachira {
       $after = el($options["filter"], "after");
     }
 
-    if($before) $before();
+    if(isset($before)) $before();
 
     $path = el($options, "path", el($_SERVER, "PATH_INFO", "/"));
     Pachira\Router::getInstance()->route($path);
 
-    if($after) $after();
+    if(isset($after)) $after();
   }
 
   public static function addPlugin($name, $initializer){
