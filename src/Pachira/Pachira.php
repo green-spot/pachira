@@ -17,8 +17,17 @@ class Pachira {
       if($option) $initializer($option);
     }
 
+    if(el($options, "filter")){
+      $before = el($options["filter"], "before");
+      $after = el($options["filter"], "after");
+    }
+
+    if($before) $before();
+
     $path = el($options, "path", el($_SERVER, "PATH_INFO", "/"));
     Pachira\Router::getInstance()->route($path);
+
+    if($after) $after();
   }
 
   public static function addPlugin($name, $initializer){
